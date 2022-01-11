@@ -5,6 +5,21 @@
 * 초음파센서
 </br></br>
 
+
+### 지원 언어
+
+* 아두이노(Arduino)
+* 엔트리(Entry)
+</br></br>
+
+
+### 지원 보드
+
+* 이티보드(ET-Board)
+* ESP32-DevKit
+* NodeMCU-32S
+</br></br>
+
   
 ### 문서 및 자료(Documentation & File)
 
