@@ -1,6 +1,6 @@
-# 이티보드 스마트팩토리 코딩키트 (기본)
+# 이티보드 스마트팩토리 코딩 키트 (기본)
 
-* ET-Board Smart Factory Basic Contents
+* ET-Board Smart Factory Coding Kit (Basic)
 * 공장에서 제품이 컨베이어 벨트 위로 이동할 때 갯수를 파악한다.
 * 초음파센서
 </br></br>
