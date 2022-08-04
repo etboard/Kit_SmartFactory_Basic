@@ -10,6 +10,7 @@
 
 * 아두이노(Arduino)
 * 엔트리(Entry)
+* 파이썬(MicroPython)
 </br></br>
 
 
