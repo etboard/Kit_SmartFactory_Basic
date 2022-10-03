@@ -3,6 +3,7 @@
  * Date : 2018.09.30  
  * Description : SSD1306 OLED Display  
  * Reference: FontUsage.ino in u8g2 examples 
+ * Modified     : 2022.10.03 : SCS : support arduino uno with ET-Upboard
  **********************************************************************************/
 
 #include "oled_u8g2.h"
@@ -10,7 +11,6 @@
 #include <Arduino.h>
 
 #include <U8g2lib.h>
-#include <String>
 
 #ifdef U8X8_HAVE_HW_SPI
 #include <SPI.h>
@@ -21,12 +21,15 @@
 
 // 2018.09.05 : SCS
 // U8g2 Contructor (Frame Buffer)
-
-// Slow
-//U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ 22, /* data=*/ 21, /* reset=*/ U8X8_PIN_NONE);
-// Fast
-U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
-
+#if defined(ARDUINO_AVR_UNO)    
+  // Slow
+  U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ A0, /* data=*/ A1, /* reset=*/ U8X8_PIN_NONE);
+#elif defined(ESP32)   
+  // Fast
+  U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
+#else
+  #error "Unknown board"
+#endif
 // End of constructor
 
 //=================================================================================
@@ -47,7 +50,7 @@ void OLED_U8G2::setup(void)
 }
 
 //=================================================================================
-void OLED_U8G2::setLine(int line, String buffer)
+void OLED_U8G2::setLine(int line, char* buffer)
 //=================================================================================
 {  
   if (line < 1 || line > 3) return;
