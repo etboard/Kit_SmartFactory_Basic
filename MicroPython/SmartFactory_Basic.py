@@ -5,6 +5,7 @@
 # CopyRight    : (주)한국공학기술연구원(www.ketri.re.kr)
 # Created Date : 2022.02.08
 # Reference    :
+# Modified     : 2022.11.23 : YSY : 소스 크린징, distance범위지정 
 # Modified     :
 # ******************************************************************************************
 
@@ -16,7 +17,7 @@ from ETboard.lib.OLED_U8G2 import *                # ETboard OLED 관련 모듈
 
 # global variable
 oled = oled_u8g2()                                 # OLED
-RESET = Pin(D7)                                    # 카운트 리셋핀 ( D7 = 파란 버튼 )
+RESET = Pin(D6)                                    # 카운트 리셋핀 ( D6 = 빨강 버튼 )
 TRIG = Pin(D9)                                     # 초음파 송신부
 ECHO = Pin(D8)                                     # 초음파 수신부
 
@@ -46,7 +47,7 @@ def loop():
     print(f'{distance : .1f}', "cm")               # 출력
     time.sleep(0.1)                                # 0.1초 딜레이
 
-    if( distance < 10 ) :                          # 물체와의 거리가 10cm 이하면
+    if( distance > 2 and distance < 10 ) :                          # 물체와의 거리가 10cm 이하면
         now_time = int(round(time.time() * 1000))  # 현재 시각(1/000초)
         if(now_time - pre_time > 500) :            # 0.5초 이상인 경우만, 중복 카운트 방지
             count += 1                             # 한 번 카운트

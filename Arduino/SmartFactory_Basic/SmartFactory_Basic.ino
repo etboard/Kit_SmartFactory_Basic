@@ -3,10 +3,12 @@
  * Description  : 스마트팩토리 코딩 키트 (기본)
  * Author       : 위대원
  * CopyRight    : (주)한국공학기술연구원(www.ketri.re.kr)
- * Warning      : Arduino IDE에서 u8g2 라이브러리를 추가해서 컴파일 해야힘
+ * Warning      : Arduino IDE에서 u8g2 라이브러리를 추가해서 컴파일 해야함
  * Created Date : 2021.09.14 : WDW : 최초 작성
  * Modified     : 2022.01.12 : SCS : 소스 크린징
  * Modified     : 2022.10.03 : SCS : support arduino uno with ET-Upboard
+ * Modified     : 2022.11.23 : YSY : 소스 크린징, distance값 수정, distance 범위 지정
+ * Modified     :
 ******************************************************************************************/
 
 //==========================================================================================
@@ -18,7 +20,7 @@
 #include "oled_u8g2.h"
 OLED_U8G2 oled;
 
-int RESET_PIN = D7;                     // 카운트 리셋핀 (D7 = 파란 버튼)
+int RESET_PIN = D6;                     // 카운트 리셋핀 (D6 = 빨강 버튼)
 int TRIG      = D9;                     // TRIG 핀 설정 (초음파 보내는 핀)
 int ECHO      = D8;                     // ECHO 핀 설정 (초음파 받는 핀)
 
@@ -65,7 +67,7 @@ void loop()
   distance = duration * 17 / 1000;    // 측정된 값을 Cm 로 변환하기 위해 공식을 대입
   Serial.println(distance);
 
-  if(distance < 30)
+  if(distance > 2 && distance < 10)   // 거리가 2초과 10미만일때 
   {
     int now_time = millis();
     if(now_time - pre_time > 500)
@@ -81,6 +83,7 @@ void loop()
       pre_time = now_time;
     }
   }
+
 
   if(digitalRead(RESET_PIN) == LOW)
   {
