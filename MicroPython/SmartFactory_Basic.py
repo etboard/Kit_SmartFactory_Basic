@@ -54,7 +54,7 @@ def loop():
             print("count : ", count)               # 출력
             oled.clear()                           # OLED 화면 클리어
             oled_show(count)                       # OLED 화면에 카운트 표시
-            time.sleep(1)                          # 1초 딜레이
+            time.sleep(0.5)                        # 0.5초 딜레이
 
             pre_time = now_time;                   # 이전 시각에 현재 시각 저장
 

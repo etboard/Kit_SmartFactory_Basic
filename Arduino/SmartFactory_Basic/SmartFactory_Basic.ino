@@ -7,7 +7,7 @@
  * Created Date : 2021.09.14 : WDW : 최초 작성
  * Modified     : 2022.01.12 : SCS : 소스 크린징
  * Modified     : 2022.10.03 : SCS : support arduino uno with ET-Upboard
- * Modified     : 2022.11.23 : YSY : 소스 크린징, distance값 수정, distance 범위 지정
+ * Modified     : 2022.11.23 : YSY : 소스 크린징, distance값 수정, distance 범위 지정, delay 수정
  * Modified     :
 ******************************************************************************************/
 
@@ -78,7 +78,7 @@ void loop()
       Serial.println(count);
 
       oled_show(count);
-      delay(1000);
+      delay(500);
 
       pre_time = now_time;
     }
